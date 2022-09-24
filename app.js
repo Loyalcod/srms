@@ -3,7 +3,7 @@ const app = express()
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 const path = require("path")
-
+require("dotenv").config()
 
 const port = process.env.port
 app.use(bodyParser.urlencoded({extended: false}))

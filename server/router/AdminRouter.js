@@ -3,7 +3,9 @@ const router = express.Router()
 
 const {
     registerAdmin,
-    loginAdmin
+    loginAdmin,
+    refreshLoginAdmin,
+    logoutAdmin
 } = require('../controller/AdminController')
 
 
@@ -13,7 +15,10 @@ router.post('/register',registerAdmin)
 /* --------------------------------------------------------- login admin router --------------------------------------------------------- */
 router.post('/login',loginAdmin)
 
+/* ------------------------------------------------------ refresh login admin router ----------------------------------------------------- */
+router.get('/refresh',refreshLoginAdmin)
 
-
+/* --------------------------------------------------------- logout admin router -------------------------------------------------------- */
+router.get('/logout',logoutAdmin)
 
 module.exports = router

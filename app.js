@@ -3,7 +3,10 @@ const app = express()
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 const path = require("path")
-require("dotenv").config()
+const connectDB = require("./server/config/db")
+require("dotenv").config({path: path.resolve(__dirname,'./server/.env')})
+
+connectDB()
 
 const port = process.env.port
 app.use(bodyParser.urlencoded({extended: false}))

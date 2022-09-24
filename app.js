@@ -8,14 +8,19 @@ require("dotenv").config({path: path.resolve(__dirname,'./server/.env')})
 
 connectDB()
 
-const port = process.env.port
+const port = process.env.PORT
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 app.use(cookieParser)
 
+
 app.get('/',(req,res)=>{
     res.send("this is the server side")
 })
+
+/* --------------------------------------------------------- admin router crude --------------------------------------------------------- */
+const AdminRouter = require("./server/router/AdminRouter")
+app.use('/admin',AdminRouter)
 
 
 app.listen(port,()=>{

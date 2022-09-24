@@ -11,7 +11,7 @@ connectDB()
 const port = process.env.PORT
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
-app.use(cookieParser)
+app.use(cookieParser())
 
 
 app.get('/',(req,res)=>{

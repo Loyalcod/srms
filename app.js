@@ -30,6 +30,14 @@ app.use('/class',StudentClassRouter)
 const studentRouter = require('./server/router/studentRouter')
 app.use('/student',studentRouter)
 
+/* -------------------------------------------------------- subject router crude -------------------------------------------------------- */
+const subjectRouter = require('./server/router/subjectRouter')
+app.use('/subject',subjectRouter)
+
+/* --------------------------------------------------------- result router crude -------------------------------------------------------- */
+const resultRouter = require('./server/router/resultRouter')
+app.use('/result',resultRouter)
+
 
 app.listen(port,()=>{
     console.log("this server is running")

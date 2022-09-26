@@ -27,7 +27,10 @@ const studentSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    classId: {type: mongoose.Types.ObjectId, ref:'classes'}
+    classId: {type: mongoose.Types.ObjectId, ref:'classes'},
+
+    subjectId: [{type: mongoose.Types.ObjectId, ref:'subject'}],
+    resultId: [{type: mongoose.Types.ObjectId, ref: 'result'}]
 },{timestamps: true})
 
 

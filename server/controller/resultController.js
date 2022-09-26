@@ -46,3 +46,60 @@ exports.getResult = async(req,res)=>{
         res.json({error:error.message})
     }
 }
+
+exports.getOneResult = async(req,res)=>{
+    const {resultId} = req.params
+
+    try {
+        const oneResult = await result.findById(resultId)
+        .populate('studentId').populate('subjectId').populate('classId')
+
+        res.json(oneResult)
+
+    } catch (error) {
+        res.json({error:error.message})
+    }
+}
+
+exports.updateResult = async(req,res)=>{
+    const {resultId} = req.params
+    const {mark} = req.body
+
+    try {
+       const updateResult = await result.updateOne(
+        {_id:resultId},
+        {$set: {mark}}
+       )
+
+       res.json(updateResult)
+
+        
+    } catch (error) {
+        res.json({error:error.message})
+    }
+
+    
+}
+
+exports.deleteResult = async(req,res)=>{
+    const {resultId} = req.params 
+
+    try {
+
+        const removeResultinStudent = await student.findOneAndUpdate(
+            {resultId:resultId},
+            {$pull: {resultId:resultId}}
+        )
+
+        const removeResultInSubject = await subject.findOneAndUpdate(
+            {resultId:resultId},
+            {$pull: {resultId}}
+        )
+
+        const delResult = await result.deleteOne({_id:resultId})
+        res.json(delResult)
+
+    } catch (error) {
+        res.json({error:error.message})
+    }
+}

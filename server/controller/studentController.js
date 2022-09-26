@@ -29,3 +29,66 @@ exports.studentcreate = async(req,res)=>{
         res.json({error: error.message})
     }
 }
+
+exports.getStudent = async(req,res)=>{
+    try {
+        const getallstudent = await student.find().populate('classId')
+        res.json(getallstudent)
+
+    } catch (error) {
+        res.json({error:error.message})
+    }
+}
+
+exports.getOneStudent = async(req,res)=>{
+    const {studentId} = req.params 
+
+    try {
+        const getOneStudent = await student.findById(studentId)
+        res.json(getOneStudent)
+    } catch (error) {
+        res.json({error:error.message})
+    }
+}
+
+exports.updateStudent = async(req,res)=>{
+
+    const {studentId} = req.params 
+    const {studentName,registrationNo,email,gender,studentClass,dob} = req.body
+
+    try {
+        
+    const existStudent = await student.findOne({_id:studentId})
+
+    if(existStudent.classId !== studentClass){
+        
+        const pullStudentFromClass = await studentClassId.findOneAndUpdate(
+            {studentId: studentId},
+            {$pull: {studentId:studentId}}
+        )
+
+        const pushStudentInClass = await studentClassId.findOneAndUpdate(
+            {_id: studentClass},
+            {$push: {studentId:studentId}}
+        )
+    }
+
+    const updateStudent = await student.updateOne(
+        {_id: studentId},
+        {$set: {
+            studentName,
+            registrationNo,
+            email,
+            gender,
+            dob,
+            classId:studentClass,
+        }}
+    )
+
+    res.json(updateStudent)
+
+    } catch (error) {
+        res.json({error:error.message})
+    }
+    
+}

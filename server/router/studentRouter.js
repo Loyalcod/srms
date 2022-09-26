@@ -6,7 +6,8 @@ const {
     studentcreate,
     getStudent,
     getOneStudent,
-    updateStudent
+    updateStudent,
+    deleteStudent
 } = require("../controller/studentController")
 
 
@@ -21,6 +22,9 @@ router.get('/:studentId',getOneStudent)
 
 /* -------------------------------------------------------- update student router ------------------------------------------------------- */
 router.patch('/:studentId',updateStudent)
+
+/* -------------------------------------------------------- delete student router ------------------------------------------------------- */
+router.delete("/:classId/:studentId",deleteStudent)
 
 
 

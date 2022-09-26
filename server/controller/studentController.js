@@ -92,3 +92,21 @@ exports.updateStudent = async(req,res)=>{
     }
     
 }
+
+exports.deleteStudent = async(req,res)=>{
+    const {studentId} = req.params
+    const {classId} = req.params
+
+    try {
+        const delStudentFromClass = await studentClassId.findOneAndUpdate(
+            {_id: classId},
+            {$pull: {studentId:studentId}}
+        )
+
+        const deleteStudent = await student.deleteOne({_id:studentId})
+        res.json(deleteStudent)
+        
+    } catch (error) {
+        res.json({error:error.message})
+    }
+}

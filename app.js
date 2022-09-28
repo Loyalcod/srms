@@ -27,6 +27,10 @@ app.get('/',(req,res)=>{
 const AdminRouter = require("./server/router/AdminRouter")
 app.use('/admin',AdminRouter)
 
+/* --------------------------------------------------------- result router crude -------------------------------------------------------- */
+const resultRouter = require('./server/router/resultRouter')
+app.use('/result',resultRouter)
+
 /* ----------------------------------------------------- authentication router crude ---------------------------------------------------- */
 const authenticationRouter = require("./server/middleware/AuthMiddleWare")
 app.use(authenticationRouter)
@@ -43,9 +47,7 @@ app.use('/student',studentRouter)
 const subjectRouter = require('./server/router/subjectRouter')
 app.use('/subject',subjectRouter)
 
-/* --------------------------------------------------------- result router crude -------------------------------------------------------- */
-const resultRouter = require('./server/router/resultRouter')
-app.use('/result',resultRouter)
+
 
 
 /* ---------------------------------------------- student subject combination router crude ---------------------------------------------- */

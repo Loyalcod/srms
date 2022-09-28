@@ -24,6 +24,10 @@ app.get('/',(req,res)=>{
 const AdminRouter = require("./server/router/AdminRouter")
 app.use('/admin',AdminRouter)
 
+/* ----------------------------------------------------- authentication router crude ---------------------------------------------------- */
+const authenticationRouter = require("./server/middleware/AuthMiddleWare")
+app.use(authenticationRouter)
+
 /* ----------------------------------------------------- student class router crude ----------------------------------------------------- */
 const StudentClassRouter = require("./server/router/studentClassRouter")
 app.use('/class',StudentClassRouter)

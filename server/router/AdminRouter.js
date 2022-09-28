@@ -8,6 +8,7 @@ const {
     logoutAdmin
 } = require('../controller/AdminController')
 
+const VerifyAuthentication = require('../middleware/AuthMiddleWare')
 
 /* -------------------------------------------------------- register admin router ------------------------------------------------------- */
 router.post('/register',registerAdmin)
@@ -19,6 +20,6 @@ router.post('/login',loginAdmin)
 router.get('/refresh',refreshLoginAdmin)
 
 /* --------------------------------------------------------- logout admin router -------------------------------------------------------- */
-router.get('/logout',logoutAdmin)
+router.get('/logout',VerifyAuthentication,logoutAdmin)
 
 module.exports = router

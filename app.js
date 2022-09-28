@@ -1,6 +1,8 @@
 const express = require("express")
 const app = express()
 const cors = require('cors')
+const corsOption = require('./server/config/corsOption')
+const credentials = require("./server/middleware/credential")
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
 const path = require("path")
@@ -8,7 +10,8 @@ const connectDB = require("./server/config/db")
 require("dotenv").config({path: path.resolve(__dirname,'./server/.env')})
 
 connectDB()
-app.use(cors())
+app.use(credentials)
+app.use(cors(corsOption))
 
 const port = process.env.PORT
 app.use(bodyParser.urlencoded({extended: false}))

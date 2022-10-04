@@ -1,5 +1,5 @@
 <script>
-	let name = 'hello guys welcome to the student result management system'
+	let welcome  = 'hello guys welcome to the student result management system'
 	import Outer from './Outer.svelte'
 	let count = 0
 	const handleClick = () =>{
@@ -12,11 +12,13 @@
 
 		loggedin = !loggedin
 	}
+
+	let name = ''
 	
 </script>
 
 <main>
-	<h1>{name}</h1>
+	<h1>{welcome }</h1>
 	<Outer word =  'component is svelte'/>
 	<Outer />
 	<button on:click= {handleClick}> click {count} times</button>
@@ -33,6 +35,9 @@
 	{:else}
 	 	{num} is between 5 and 10
 	{/if}
+
+	<input bind:value={name} type="text" placeholder="name here">
+	<p> {name || 'stranger'} </p>
 
 </main>
 

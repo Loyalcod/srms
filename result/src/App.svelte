@@ -7,6 +7,7 @@
 	const src = './images/result1.jpeg'
 
 	let showModal = false;
+
 	const ToggoleModel = ()=>{
 		showModal = !showModal
 
@@ -16,7 +17,9 @@
 
 
 	<Header on:click = {ToggoleModel} />
+
 	<Modal {showModal} on:click={ToggoleModel} >
+		
 		<FormModal/>
 	
 	</Modal>
